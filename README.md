@@ -7,8 +7,8 @@ This project is about a full stack web application that provides an intuitive wa
 
 Developed using React, this client interface uses a fictional school database connecting to a REST API I created in a previous project: <a href="https://github.com/hanscode/rest-api-sql-v3" target="_blank">REST API using Express</a>
 
-## Technologies used in this project
-HTML, CSS, JavaScript, Node.js, Express, Sequelize, React, JSX, React Router, React Context API, Create React App
+## Technologies used
+HTML, CSS, JavaScript, Node.js, Express, Sequelize, React, JSX, React Router, React Context API, Fetch API and Create React App
 
 ## 🛠 Installation & Set Up
 
