@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { api } from "../utils/apiHelper";
 
 import ErrorsDisplay from "./ErrorsDisplay";
-import UserContext from "./context/UserContext";
+import UserContext from "../context/UserContext";
 
 const UserSignUp = () => {
   const { actions } = useContext(UserContext);
@@ -31,7 +31,7 @@ const UserSignUp = () => {
       const response = await api("/users", "POST", user);
       if (response.status === 201) {
         console.log(
-          `${firstName.username} is successfully signed up and authenticated!`
+          `${user.firstName} ${user.lastName}  is successfully signed up and authenticated!`
         );
         await actions.signIn(user);
         navigate("/");
