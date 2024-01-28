@@ -5,7 +5,7 @@ import { api } from "../utils/apiHelper";
 import ErrorsDisplay from "./ErrorsDisplay";
 import UserContext from "./context/UserContext";
 
-const UserSignIn = () => {
+const UserSignUp = () => {
   const { actions } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -103,4 +103,4 @@ const UserSignIn = () => {
   );
 };
 
-export default UserSignIn;
+export default UserSignUp;

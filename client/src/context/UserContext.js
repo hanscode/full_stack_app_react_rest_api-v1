@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import Cookies from "js-cookie";
-import { api } from "../../utils/apiHelper";
+import { api } from "../utils/apiHelper";
 import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext(null);
