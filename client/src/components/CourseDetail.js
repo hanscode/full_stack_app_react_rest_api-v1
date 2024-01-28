@@ -4,7 +4,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import Markdown from "react-markdown";
 
 // Importing App Components
-import NotFound from './NotFound';
+import NotFound from "./NotFound";
 
 const CourseDetail = () => {
   const { id } = useParams();
@@ -60,14 +60,24 @@ const CourseDetail = () => {
               </div>
               <div>
                 <h3 className="course--detail--title">Estimated Time</h3>
-                <p>{course.estimatedTime ? course.estimatedTime : 'No estimated time defined.'}</p>
+                <p>
+                  {course.estimatedTime
+                    ? course.estimatedTime
+                    : "No estimated time defined."}
+                </p>
 
                 <h3 className="course--detail--title">Materials Needed</h3>
-                <Markdown className="course--detail--list">{
-                course.materialsNeeded 
-                ? course.materialsNeeded 
-                : 'The course owner has not yet defined the materials required for this course.'}
-                </Markdown>
+                {course.materialsNeeded ? (
+                  <Markdown className="course--detail--list">
+                    {course.materialsNeeded}
+                  </Markdown>
+                ) : (
+                  <Markdown>
+                    {
+                      "The course owner has not yet defined the materials required for this course."
+                    }
+                  </Markdown>
+                )}
               </div>
             </div>
           </form>
