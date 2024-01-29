@@ -5,13 +5,24 @@ import { Link, useNavigate } from "react-router-dom";
 // Importing App Components
 import Course from "./Course";
 
+/**
+ * This component provides the "Courses" screen by retrieving the list of courses 
+ * from the REST API's /api/courses route and rendering a list of courses. 
+ * 
+ * Each course needs to link to its respective "Course Detail" screen. 
+ * 
+ * This component also renders a link to the "Create Course" screen.
+ * 
+ * @returns Courses Component.
+ */
 const Courses = () => {
   const [courses, setCourses] = useState(null);
   const navigate = useNavigate();
   let allCourses;
 
-  // Trigger calling the GET api for all courses at rendering
+ // Fetching the list of courses from the REST-API when the component is initially rendered.
   useEffect(() => {
+    // Define an asynchronous function `fetchCourses`
     const fetchCourses = async () => {
       try {
         const response = await api("/courses", "GET");
@@ -26,9 +37,9 @@ const Courses = () => {
         navigate("/error");
       }
     };
-    // Call async api function
+    // Call the fetchCourses async function when the component is mounted or when the navigate function changes.
     fetchCourses();
-  }, [navigate]);
+  }, [navigate]); // Indicates that useEffect should run when 'navigate' changes.
 
   if (courses) {
     allCourses = courses.map((course) => {

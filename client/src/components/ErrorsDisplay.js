@@ -1,3 +1,8 @@
+/**
+ * Display validation errors returned from the REST API.
+ * @param {object} errors
+ * @returns List of Errors Component.
+ */
 const ErrorsDisplay = ({ errors }) => {
   let errorsDisplay = null;
 

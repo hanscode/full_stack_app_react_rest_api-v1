@@ -5,6 +5,16 @@ import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext(null);
 
+/**
+ * Using the React Context API for Global State Management.
+ * 
+ * The authenticated user, user signin(), and user signout() are specified in the
+ * `UserProvider` component ensuring their accessibility across the application via Context API.
+ * 
+ * @param {object} props 
+ * @returns Context API Provider Component.
+ */
+
 export const UserProvider = (props) => {
   const cookie = Cookies.get("authenticatedUser");
   const [authUser, setAuthUser] = useState(cookie ? JSON.parse(cookie) : null);
