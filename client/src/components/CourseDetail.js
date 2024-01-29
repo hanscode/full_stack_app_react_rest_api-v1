@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { api } from "../utils/apiHelper";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Markdown from "react-markdown";
 
-// Importing App Components
+// Importing App Components & Context
+import UserContext from "../context/UserContext";
 import NotFound from "./NotFound";
 
 const CourseDetail = () => {
+  const { authUser } = useContext(UserContext);
   const { id } = useParams();
   const [course, setCourse] = useState(null);
   const navigate = useNavigate();
@@ -29,17 +31,40 @@ const CourseDetail = () => {
     fetchCourseDetail();
   }, [id, navigate]);
 
+  // Delete event handler
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    const response = await api(`/courses/${id}`, "DELETE", null, authUser);
+    if (response.status === 204) {
+      console.log(`Your course has been removed.`);
+      navigate(`/`);
+    } else if (response.status === 500) {
+      navigate(`/error`);
+    }
+    try {
+    } catch (error) {
+      console.log(error);
+      navigate("/error");
+    }
+  };
+
   if (course) {
     return (
       <>
         <div className="actions--bar">
           <div className="wrap">
-            <Link className="button" to="/">
-              Update Course
-            </Link>
-            <Link className="button" to="/">
-              Delete Course
-            </Link>
+            {/** if the logged in user is the owner, then display the UPDATE and DELETE actions */}
+            {authUser && authUser.id === course.User.id ? (
+              <>
+                <Link className="button" to={`/courses/${id}/update`}>
+                  Update Course
+                </Link>
+                <button className="button" onClick={handleDelete}>
+                  Delete Course
+                </button>
+              </>
+            ) : null }
+
             <Link className="button button-secondary" to="/">
               Return to List
             </Link>

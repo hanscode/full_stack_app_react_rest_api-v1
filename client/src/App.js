@@ -8,6 +8,7 @@ import UserSignIn from "./components/UserSignIn";
 import UserSignUp from "./components/UserSignUp";
 import UserSignOut from "./components/UserSignOut";
 import CreateCourse from "./components/CreateCourse";
+import UpdateCourse from './components/UpdateCourse';
 import PrivateRoute from "./components/PrivateRoute";
 
 // Importing the App Error Components
@@ -26,6 +27,7 @@ function App() {
           {/** Private Routes */}
           <Route element={<PrivateRoute />}>
             <Route path="/courses/create" element={<CreateCourse />} />
+            <Route path='/courses/:id/update' element={<UpdateCourse />} />
           </Route>
           {/** Authentication Routes */}
           <Route path="signup" element={<UserSignUp />} />
