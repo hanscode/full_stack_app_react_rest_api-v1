@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../utils/apiHelper";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Importing App Components
 import Course from "./Course";
@@ -15,9 +15,9 @@ const Courses = () => {
     const fetchCourses = async () => {
       try {
         const response = await api("/courses", "GET");
-        const json = await response.json();
+        const jsonData = await response.json();
         if (response.status === 200) {
-          setCourses(json);
+          setCourses(jsonData);
         } else if (response.status === 500) {
           navigate(`/error`);
         }
@@ -47,9 +47,9 @@ const Courses = () => {
   return (
     <div className="wrap main--grid">
       {allCourses}
-      <NavLink
+      <Link
         className="course--module course--add--module"
-        to="/create-course"
+        to="/courses/create"
       >
         <span className="course--add--title">
           <svg
@@ -64,7 +64,7 @@ const Courses = () => {
           </svg>
           New Course
         </span>
-      </NavLink>
+      </Link>
     </div>
   );
 };
