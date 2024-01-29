@@ -92,7 +92,12 @@ router.get("/courses/:id", asyncHandler(async (req, res, next) => {
 router.post( "/courses", authenticateUser, asyncHandler(async (req, res) => {
     try {
       const course = await Course.create(req.body);
-      res.status(201).setHeader("Location", `/courses/${course.id}`).end();
+      res.status(201)
+      .setHeader("Location", `/courses/${course.id}`)
+      /** For clients to be able to access `Location` header, 
+       * the server must list it using the HTTP `Access-Control-Expose-Headers` header. */
+      .setHeader('Access-Control-Expose-Headers', 'Location')
+      .end();
     } catch (error) {
       console.log('Error: ', error);
 
