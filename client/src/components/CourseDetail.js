@@ -32,6 +32,9 @@ const CourseDetail = () => {
         const jsonData = await response.json();
         if (response.status === 200) {
           setCourse(jsonData);
+        } else if (response.status === 404) {
+          // redirects users to the /notfound path if the requested course isn't returned from the REST API.
+          navigate(`/notfound`);
         } else if (response.status === 500) {
           navigate(`/error`);
         }
