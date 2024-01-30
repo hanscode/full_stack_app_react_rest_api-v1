@@ -1,11 +1,10 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { api } from "../utils/apiHelper";
 
 import ErrorsDisplay from "./ErrorsDisplay";
 import UserContext from "../context/UserContext";
 import NotFound from "./NotFound";
-import Forbidden from "./Forbidden";
 
 /**
  * This component provides the "Update Course" screen by rendering a form that allows 
@@ -87,7 +86,9 @@ const UpdateCourse = () => {
   if (course) {
     // Redirect users to the /forbidden path if the requested course isn't owned by the authenticated user.
     if (authUser.id !== course.User.id) {
-      return <Forbidden />;
+      return (
+        <Navigate to='/forbidden'/>
+      );
     } else {
       // If the authenticated user is owner of the course. Then, display course details to be updated.
       return (
