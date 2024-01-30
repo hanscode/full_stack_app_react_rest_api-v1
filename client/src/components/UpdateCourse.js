@@ -31,6 +31,9 @@ const UpdateCourse = () => {
         const jsonData = await response.json();
         if (response.status === 200) {
           setCourse(jsonData);
+        } else if (response.status === 404) {
+          // Redirect users to the /notfound path if the requested course isn't returned from the REST API.
+          navigate(`/notfound`);
         }
       } catch (error) {
         console.log(`Error fetching and parsing the data`, error);
@@ -38,7 +41,7 @@ const UpdateCourse = () => {
     };
 
     fetchCourseDetail();
-  }, [id]);
+  }, [id, navigate]);
 
   // State
   const title = useRef(null);
@@ -149,7 +152,6 @@ const UpdateCourse = () => {
       );
     }
   } else {
-    // Redirect users to the /notfound path if the requested course isn't returned from the REST API.
     return <NotFound />;
   }
 };
