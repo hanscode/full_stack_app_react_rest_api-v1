@@ -4,7 +4,11 @@ export const api = (
   body = null,
   credentials = null
 ) => {
-  const url = "http://localhost:5000/api" + path;
+  // For testing this app on local machine:
+  // const url = "http://localhost:5000/api" + path;
+
+  // For testing this app on railway:
+  const url = `https://full-stack-react-app.up.railway.app/api` + path;
 
   const options = {
     method,
